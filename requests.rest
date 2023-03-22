@@ -1,0 +1,54 @@
+// Welcome Page
+GET http://localhost:3000/
+
+###
+
+// Registration API
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "name": "Tommy",
+    "password": "123"
+}
+
+###
+
+// Another Registration, same PW but diff hased PW
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "name": "Tyler",
+    "password": "123"
+}
+
+###
+
+// Login API
+# @name Auth
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "name": "Tommy",
+    "password": "123"
+}
+
+###
+
+// Get the userlist with the token
+GET http://localhost:3000/userlist
+Authorization: Bearer {{Auth.response.body.accessToken}}
+
+###
+
+// Try without token
+GET http://localhost:3000/userlist
+
+
+###
+
+// Try an invalid token
+GET http://localhost:3000/userlist
+Authorization: Bearer Invalid_Token
